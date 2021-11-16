@@ -34,7 +34,7 @@ const attachComponentArray = (entity, component) => {
 };
 
 const removeComponent = (entity, component) => {
-    const key = component._ckey;
+    const key = component.prototype._ckey;
 
     delete entity[key];
     delete entity.components[key];
