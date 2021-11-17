@@ -519,13 +519,13 @@ const bitIntersection = (n1, n2) => {
 };
 
 const attachComponent = (entity, component) => {
-  const key = component._ckey;
+  const key = component.prototype._ckey;
   entity[key] = component;
   entity.components[key] = component;
 };
 
 const attachComponentKeyed = (entity, component) => {
-  const key = component._ckey;
+  const key = component.prototype._ckey;
 
   if (!entity.components[key]) {
     entity[key] = {};
@@ -537,7 +537,7 @@ const attachComponentKeyed = (entity, component) => {
 };
 
 const attachComponentArray = (entity, component) => {
-  const key = component._ckey;
+  const key = component.prototype._ckey;
 
   if (!entity.components[key]) {
     entity[key] = [];
@@ -552,13 +552,13 @@ const removeComponent = (entity, component) => {
   const key = component.prototype._ckey;
   delete entity[key];
   delete entity.components[key];
-  entity._cbits = subtractBit(entity._cbits, component._cbit);
+  entity._cbits = subtractBit(entity._cbits, component.prototype._cbit);
 
   entity._candidacy();
 };
 
 const removeComponentKeyed = (entity, component) => {
-  const key = component._ckey;
+  const key = component.prototype._ckey;
   const keyProp = component[component.keyProperty];
   delete entity[key][keyProp];
   delete entity.components[key][keyProp];
@@ -566,14 +566,14 @@ const removeComponentKeyed = (entity, component) => {
   if (Object.keys(entity[key]).length <= 0) {
     delete entity[key];
     delete entity.components[key];
-    entity._cbits = subtractBit(entity._cbits, component._cbit);
+    entity._cbits = subtractBit(entity._cbits, component.prototype._cbit);
 
     entity._candidacy();
   }
 };
 
 const removeComponentArray = (entity, component) => {
-  const key = component._ckey;
+  const key = component.prototype._ckey;
   const idx = entity[key].indexOf(component);
   entity[key].splice(idx, 1);
   entity.components[key].splice(idx, 1);
@@ -581,7 +581,7 @@ const removeComponentArray = (entity, component) => {
   if (entity[key].length <= 0) {
     delete entity[key];
     delete entity.components[key];
-    entity._cbits = subtractBit(entity._cbits, component._cbit);
+    entity._cbits = subtractBit(entity._cbits, component.prototype._cbit);
 
     entity._candidacy();
   }
