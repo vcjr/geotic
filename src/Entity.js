@@ -3,14 +3,14 @@ import { EntityEvent } from './EntityEvent';
 import { addBit, hasBit, subtractBit } from './util/bit-util';
 
 const attachComponent = (entity, component) => {
-    const key = component.prototype._ckey;
-
+    const key = component._ckey;
+    
     entity[key] = component;
     entity.components[key] = component;
 };
 
 const attachComponentKeyed = (entity, component) => {
-    const key = component.prototype._ckey;
+    const key = component._ckey;
 
     if (!entity.components[key]) {
         entity[key] = {};
@@ -22,7 +22,7 @@ const attachComponentKeyed = (entity, component) => {
 };
 
 const attachComponentArray = (entity, component) => {
-    const key = component.prototype._ckey;
+    const key = component._ckey;
 
     if (!entity.components[key]) {
         entity[key] = [];

@@ -519,13 +519,13 @@ const bitIntersection = (n1, n2) => {
 };
 
 const attachComponent = (entity, component) => {
-  const key = component.prototype._ckey;
+  const key = component._ckey;
   entity[key] = component;
   entity.components[key] = component;
 };
 
 const attachComponentKeyed = (entity, component) => {
-  const key = component.prototype._ckey;
+  const key = component._ckey;
 
   if (!entity.components[key]) {
     entity[key] = {};
@@ -537,7 +537,7 @@ const attachComponentKeyed = (entity, component) => {
 };
 
 const attachComponentArray = (entity, component) => {
-  const key = component.prototype._ckey;
+  const key = component._ckey;
 
   if (!entity.components[key]) {
     entity[key] = [];
